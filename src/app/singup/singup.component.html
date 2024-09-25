@@ -1,0 +1,36 @@
+<form class="container" [formGroup]="loginForm">
+    <h1>Signup Form</h1>
+<mat-form-field appearance="fill">
+    <mat-label>UserName</mat-label>
+    <input matInput placeholder="Username" formControlName="UserName">
+    <mat-error *ngIf="loginForm.get('UserName')?.hasError('pattern')">Username should only contain Alphabets</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput  placeholder="Password" formControlName="Password">
+    <mat-error *ngIf="loginForm.get('Password')?.hasError('minlength')">Password must be at least 6 characters long</mat-error>
+    <mat-error *ngIf="loginForm.get('Password')?.hasError('pattern')">Password must include at least one special character</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Confirm Password</mat-label>
+    <input matInput  placeholder="Password" formControlName="CPassword">
+  </mat-form-field>
+  <div class="emsg">
+    <mat-error *ngIf="Emsg" class="emsg">{{ Emsg }}</mat-error>
+
+    <!-- {{Emsg}} -->
+  </div>
+  <div class="smsg">
+    {{Smsg}}
+  </div>
+  <div  class="button">
+  <button mat-raised-button (click)="signup()"><mat-icon>person</mat-icon>Signup</button>
+  <!-- <button mat-raised-button (click)="Close()">Close</button> -->
+</div>
+</form>
+<!-- <h1 mat-dialog-title>Welcome</h1>
+<div mat-dialog-content>
+  <div mat-dialog-actions>
+    Add Users
+    </div> 
+</div> -->

@@ -1,0 +1,64 @@
+<form class="form" [formGroup]="MasterDataForm">
+  <h1>Master Data</h1>
+ 
+        <mat-form-field appearance="outline">
+          <mat-label>Mode</mat-label>
+          <mat-select value="select" formControlName="Mode">
+            <mat-option *ngIf="!MasterDataForm.get('Mode')?.value" [value]="defaultValue" disabled>{{ defaultText }}</mat-option>
+            <mat-option value="Add">Add</mat-option>
+            <mat-option value="View">View</mat-option>
+            <mat-option value="Update">Update</mat-option>
+            <mat-option value="Delete">Delete</mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="Type" (selectionChange)="onTypeChange($event.value)">
+            <mat-option *ngIf="!MasterDataForm.get('Type')?.value" [value]="defaultValue" disabled>{{ defaultText}}</mat-option>
+            <mat-option>None</mat-option>
+            <mat-option value="Bank">Bank</mat-option>
+            <mat-option value="Expenses">Expenses</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline">
+          <mat-label>{{BankExp}}</mat-label>
+          <mat-select formControlName="BankExp" (selectionChange)="onBankExpChange($event.value)">
+            <mat-option *ngIf="!MasterDataForm.get('BankExp')?.value" [value]="defaultValue" disabled>{{ defaultText }}</mat-option>
+            <mat-option *ngFor="let item of filteredList" [value]="item.id">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+     
+        <mat-form-field appearance="outline">
+          <mat-label>ID</mat-label>
+          <input matInput placeholder="Enter ID" formControlName="ID">
+        </mat-form-field>
+        <button mat-icon-button (click)="searchById()">
+          <mat-icon>search</mat-icon>
+        </button>
+      
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Enter Name" formControlName="Name">
+        </mat-form-field>
+     
+  <div>
+    {{Message}}
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="save()"><mat-icon>save</mat-icon>Save</button>
+    <button mat-raised-button (click)="Clear()" id="clear"><mat-icon>clear-all</mat-icon>Clear</button>
+  </div>
+  <div class="ag-theme-alpine" style="width: 100%; height: 200px;">
+    <ag-grid-angular style="width:100%; height:100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
+      [columnDefs]="coldefs" [rowHeight]="26" [rowData]="rowData">
+    </ag-grid-angular>
+  </div>
+
+
+
+
+</form>
+
+<app-loader></app-loader>

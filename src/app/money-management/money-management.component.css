@@ -1,0 +1,80 @@
+#cancel{
+    /* background-color: red; */
+    color: white;
+    margin-left: 20px;
+    background-color:orange;
+}
+.mm{
+    text-align: center;
+}
+#header{
+background-color: skyblue;
+color: white;
+}
+/* .ag-theme-alpine{
+    width: auto;
+    max-width:100%;
+    overflow: hidden;
+    --ag-font-size:10px;
+
+} */
+.ag-theme-alpine{
+    width:auto;
+    max-width: 100%;
+    overflow: hidden;
+    --ag-font-size: 10px;
+    --ag-header-height: 10px;
+    --ag-header-foreground-color: white;
+    --ag-header-background-color: rgb(13, 124, 228);
+    --ag-header-cell-hover-background-color: rgb(80, 40, 140);
+    --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+  
+  }
+  
+  .ag-theme-alpine .ag-header {
+    font-family: cursive;
+  }
+  .ag-theme-alpine .ag-header-group-cell {
+    font-weight: normal;
+    font-size: 22px;
+  
+  }
+  .ag-theme-alpine .ag-header-cell {
+    font-size: 18px;
+  
+  }
+   ::ng-deep .mat-mdc-text-field-wrapper {
+    height: 40px !important;
+  }
+  ::ng-deep .mat-mdc-form-field-flex {
+    margin-top: -10px !important;
+  }
+#delete{
+  background-color: red;
+  color: white;
+  margin-left: 10px;
+}
+
+  
+  .warning{
+    background-color: yellow;
+    margin-left: 20px;
+
+  }
+  mat-form-field{
+    gap:1;
+    margin-left:20px ;
+   }
+   .amount{
+    text-align: right;
+   }
+  .search{
+   margin-left: 13px;
+  }
+  .searchbtn{
+    margin-left: 5px;
+    /* margin-top: 20px; */
+    margin-bottom: 16px;
+    background-color: blue;
+  }
+

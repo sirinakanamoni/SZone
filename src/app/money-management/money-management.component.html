@@ -1,0 +1,110 @@
+<form class="mm" [formGroup]="MoneyManagementForm" >
+<h1 id="header">Transaction Details</h1>
+    <mat-form-field appearance="outline">
+        <mat-label>TransactionId</mat-label>
+        <input matInput placeholder="Enter ID" formControlName="TransactionId" (keydown)="preventSpaceInput($event)" >
+        <div *ngIf="MoneyManagementForm.controls['TransactionId'].errors?.['noSpaces'] && MoneyManagementForm.controls['TransactionId'].touched">
+            Expense ID should not contain spaces.
+          </div>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>TransactionDate</mat-label>
+        <input matInput placeholder="Transaction Date" [matDatepicker]="picker" formControlName="TransactionDate"  >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <!-- <p>Selected Date: {{ selectedDate | date: 'dd/MM/yyyy' }}</p>
+         (dateChange)="onDateChange($event.value)" -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>ExpenseType</mat-label>
+        <mat-select formControlName="ExpenseType">
+            <mat-option *ngIf="!MoneyManagementForm.get('ExpenseType')?.value" [value]="defaultValue" disabled>{{ defaultText }}</mat-option>
+             <mat-option *ngFor="let spent of spentlist" [value]="spent.name">{{spent.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>AccountNumber</mat-label>
+        <mat-select formControlName="AccountNumber" (selectionChange)="account($event.value)"> 
+            <mat-option *ngIf="!MoneyManagementForm.get('AccountNumber')?.value" [value]="defaultValue" disabled>{{ defaultText }}</mat-option>
+            <mat-option *ngFor="let bank of banks" [value]="bank.accountNumber">{{bank.accountNumber}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>PayThrough</mat-label>
+        <input matInput placeholder="Bank Name" formControlName="PayThrough">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input  type="number"  matInput placeholder="Enter Amount" formControlName="Amount" class="amount"   >
+        <!-- <mat-hint align="end">{{ MoneyManagementForm.controls['Amount'].value | currency: 'INR' : 'symbol-narrow' : '1.0-2' }}</mat-hint>         -->
+        <!-- {{Amount | currency:'INR'}} -->
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Mode of Payment</mat-label>
+        <mat-select formControlName="Paymode">
+            <mat-option *ngIf="!MoneyManagementForm.get('Paymode')?.value" [value]="defaultValue" disabled>{{ defaultText }}</mat-option>
+            <mat-option value="Cash">Cash</mat-option>
+            <mat-option value="Phonepay">Phonepay</mat-option>
+            <mat-option value="GooglePay">GooglePay</mat-option>
+            <mat-option value="Paytm">Paytm</mat-option>
+            <mat-option value="Card">Card</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-radio-group formControlName="SpentFor">
+        <mat-radio-button value="Self">Self</mat-radio-button>
+        <mat-radio-button value="Other">Others</mat-radio-button>
+ </mat-radio-group>  
+
+<div [ngStyle]="{'color':TextColour}">
+    {{Message}}
+</div>
+
+<div>
+    <button mat-raised-button color="primary" (click)="Save()" ><mat-icon>save</mat-icon>Save</button>
+    <!-- <button mat-raised-button (click)="update()">Update</button> -->
+    <button mat-raised-button id="cancel" (click)="Clear()"><mat-icon>clear</mat-icon>Clear</button>
+    <button mat-raised-button (click)="delete()" id="delete"><mat-icon>delete</mat-icon>Delete</button>
+    <!-- <button mat-raised-button (click)="Grid()">Grid</button> -->
+    <!-- <button mat-raised-button (click)="show()" class="warning"><mat-icon>warning</mat-icon>show</button> -->
+    <!-- <button mat-raised-button color="primary" (click)="searchTransactions()">Search</button> -->
+
+</div>
+<app-loader></app-loader>
+
+<!-- <div class="ag-theme-alpine" style="width: 100%; height: 200px;">
+    <ag-grid-angular style="width: 100%; height: 100%;"
+     [gridOptions]="gridOptions"
+    class="ag-theme-alpine" 
+    [columnDefs]="coldefs"
+    [rowHeight]="26"
+    [rowData]="rowData" >
+    </ag-grid-angular>
+</div> -->
+</form>
+<br>
+<div >
+    <mat-form-field  appearance="outline">
+
+        <mat-label>search</mat-label>
+        <input matInput type="text" class="search" placeholder=" Search........" [(ngModel)]="word"
+        (ngModelChange)="search()" autocomplete="off">
+
+    </mat-form-field>
+    <!-- {{word}} -->
+    <!-- <button mat-raised-button (ngModelChange)="search()" class="searchbtn"><mat-icon>search</mat-icon></button> -->
+</div>
+
+
+<div class="ag-theme-alpine" style="width: 100%; height: 200px;">
+    <ag-grid-angular 
+      style="width: 100%; height: 100%;" 
+      [gridOptions]="gridOptions"
+      class="ag-theme-alpine"
+      [columnDefs]="coldefs"
+      [rowHeight]="26"
+      [rowData]="rowData"
+      (rowClicked)="onRowClicked($event)">
+    </ag-grid-angular>
+  </div>
+  <!-- [disabled]="this.MoneyManagementForm.invalid" -->
+  <!-- [disabled]="hi" -->

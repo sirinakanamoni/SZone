@@ -1,0 +1,33 @@
+<form class="bnkcls" [formGroup]="BanksForm">
+    <h1 class="header"> Bank Details</h1>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>BankID</mat-label>
+        <input matInput placeholder="Enter BankId" formControlName="ID" (keydown)="preventSpaceInput($event)">
+        <div *ngIf="BanksForm.controls['ID'].errors?.['noSpaces'] && BanksForm.controls['ID'].touched">
+            Bank ID should not contain spaces.
+          </div>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Bank Name</mat-label>
+        <input matInput placeholder="Enter BankName" formControlName="Name">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Account Number</mat-label>
+        <input matInput placeholder="Enter AccountNumber" formControlName="AcoountNumber">
+    </mat-form-field>
+    {{message}}
+    {{TextColour}}
+    <div>
+        <button mat-raised-button color="primary" (click)="Save()">Save</button>
+        <button mat-raised-button (click)="Clear()" id="clear"><mat-icon>clear-all</mat-icon>Clear</button>
+
+    </div>
+</form>
+<br>
+<div class="ag-theme-alpine" style="width: 100%; height: 200px;" id="grid">
+    <ag-grid-angular style="width:100%; height:100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
+      [columnDefs]="coldefs" [rowHeight]="26" [rowData]="rowData" (rowClicked)="onRowClicked($event)">
+    </ag-grid-angular>
+  </div>
+

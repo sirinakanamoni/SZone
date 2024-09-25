@@ -1,0 +1,88 @@
+ 
+ <mat-toolbar class="mat-elevation-z8" >
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1>Daily Expenses</h1>
+    <span class="spacer"></span>
+    <button mat-button (click)="logout()" style="color: white;"><mat-icon>logout</mat-icon>Logout</button>
+  </mat-toolbar>
+
+  <mat-sidenav-container >
+    <mat-sidenav mode="side" opened="true" #sidenav="matSidenav" class="mat-elevation-z8">
+      <button style="color: white;" mat-button class="menu-button" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span><a routerLink="home" style="color:white;">Home</a></span>
+      </button>
+      
+<mat-accordion>
+  <mat-expansion-panel style="margin-top:10px">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>paid</mat-icon>Money Management
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+<div>
+  <button mat-button class="menu-button" routerLinkActive="active">
+    <span><a routerLink="expdtls">Expense Details</a></span>
+  </button>
+</div>
+<div>
+  <button mat-button class="menu-button" routerLinkActive="active">
+    <span><a routerLink="banks">Banks</a></span>
+  </button>
+</div>
+<div>
+  <button mat-button class="menu-button" routerLinkActive="active">
+    <span><a routerLink="moneymanagement">Transaction Details</a></span>
+  </button>
+</div>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-accordion>
+  <mat-expansion-panel style="margin-top: 10px;">
+  <mat-expansion-panel-header>
+  <mat-panel-title>
+    <mat-icon>dns</mat-icon>Master Data
+  </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div>
+    <button mat-button class="menu-button" routerLinkActive="active">
+      <span><a routerLink="masterdata">Data</a></span>
+    </button>
+  </div>
+</mat-expansion-panel>
+ 
+</mat-accordion>
+<mat-accordion>
+  <mat-expansion-panel style="margin-top: 10px;">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>reports</mat-icon>Reports
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <button mat-button class="menu-button" routerLinkActive="active">
+      <span><a routerLink="reports">Reports</a></span>
+    </button>
+  </mat-expansion-panel>
+</mat-accordion>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+      </div>
+      
+    </mat-sidenav-content>
+    
+  </mat-sidenav-container>
+  <mat-toolbar id="header">
+    
+    <span>&copy; 2024 Money Management. Established in 2008.</span>
+        <span>Email:<a href="mailto:info@managemoney.com">info&#64;managemoney.com</a>
+        Follow us on:<a href="https://www.instagram.com/MoneyManagement" target="_blank">&#64;Instagram</a>
+        Contact us: +91-9398899165</span>
+  </mat-toolbar> 
+
+
+   

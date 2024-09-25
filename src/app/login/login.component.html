@@ -1,0 +1,50 @@
+    <!-- <form class="container" fxLayout="column" fxLayoutGap="20px" [formGroup]="loginForm">
+        <h1>Login</h1>
+       
+        <mat-form-field appearance="fill">
+            <mat-label>UserName</mat-label>
+            <input matInput placeholder="Username" formControlName="UserName">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="Password">
+          </mat-form-field>
+          <div  class="button">
+          <button mat-raised-button id="login" (click)="login()"><mat-icon>login</mat-icon>Login</button>
+          <button mat-raised-button (click)="signup()"><mat-icon>person</mat-icon>CreateAccount</button>
+          <button mat-raised-button (click)="forgotPassword()">ForgotPassword</button>
+        </div>
+    </form>
+   -->
+   <app-loader></app-loader>
+   
+    <div class="login-container" >
+        <div class="login-box" >
+            <h2>Login</h2>
+            <form   [formGroup]="loginForm">
+                <div class="input-group">
+                    <input type="text" placeholder="Username" required formControlName="UserName" >
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required formControlName="Password">
+                </div>
+                <div class="forgot-password">
+                     <a href="/forgotpassword">Forgot password?</a>                       
+                </div>
+              
+                <button type="submit" class="login-btn"  (click)="login()" > Login</button>
+                <div class="social-login">
+                    <span>Or login with</span>
+                    <div class="social-icons">
+                        <button class="social-btn google"  (click)="loginWithGoogle()"><img src="\assets\googleicon.png" alt="Google"></button>
+                        <button class="social-btn facebook" (click)="loginWithFacebook()"><img src="\assets\facbookicon.png" alt="Facebook"></button>
+                    </div>
+                </div>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="/singup">Sign up</a></p>
+                </div>
+                <router-outlet></router-outlet>
+            </form>
+        </div>
+    </div>
+    

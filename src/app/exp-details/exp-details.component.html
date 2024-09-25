@@ -1,0 +1,32 @@
+<form class="expform" [formGroup]="ExpenseForm">
+    <h1 class="header"> ExpenseDetails</h1>
+    <br>
+    <div>
+        <mat-form-field appearance="outline">
+            <mat-label>Expense Id</mat-label>
+            <input matInput placeholder="Enter ExpenseID" formControlName="ExpID" (keydown)="preventSpaceInput($event)">
+            <div *ngIf="ExpenseForm.controls['ExpID'].errors?.['noSpaces'] && ExpenseForm.controls['ExpID'].touched">
+                Expense ID should not contain spaces.
+              </div>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Expense Name</mat-label>
+            <input matInput placeholder="Enter Expense Name" formControlName="ExpName">
+        </mat-form-field>
+    </div>
+    <br>
+    <div>
+        <button mat-raised-button color="primary" (click)="save()"><mat-icon>save</mat-icon>Save</button>
+        <button mat-raised-button (click)="Clear()" id="clear"><mat-icon>clear-all</mat-icon>Clear</button>
+
+    </div>
+    {{message}}
+    {{TextColour}}
+</form>
+<br>
+<div class="ag-theme-alpine" style="width: 100%; height: 200px;">
+    <ag-grid-angular style="width:100%; height:100%;" class="ag-theme-alpine" [gridOptions]="gridOptions"
+      [columnDefs]="coldefs" [rowHeight]="26" [rowData]="rowData" (rowClicked)="onRowClicked($event)">
+    </ag-grid-angular>
+  </div>
+
